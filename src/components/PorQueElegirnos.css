@@ -1,0 +1,68 @@
+.porque-elegirnos {
+  padding: 5rem 0;
+  background: var(--color-white);
+}
+
+.razones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.razon-card {
+  background: var(--color-secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.razon-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent);
+  box-shadow: 0 5px 20px var(--color-shadow);
+}
+
+.razon-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.razon-icon svg {
+  flex-shrink: 0;
+}
+
+.razon-title {
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.razon-description {
+  color: var(--color-text-light);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+@media (max-width: 968px) {
+  .razones-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .porque-elegirnos {
+    padding: 3rem 0;
+  }
+
+  .razones-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+

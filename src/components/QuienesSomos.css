@@ -1,0 +1,121 @@
+.quienes-somos {
+  padding: 5rem 0;
+  background: var(--color-white);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.section-divider {
+  width: 80px;
+  height: 4px;
+  background: var(--color-accent);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.quienes-somos-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.quienes-somos-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-light);
+}
+
+.quienes-somos-text p {
+  margin-bottom: 1.5rem;
+}
+
+.quienes-somos-text strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.quienes-somos-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 2rem;
+  background: var(--color-secondary);
+  border-radius: 10px;
+  transition: var(--transition);
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px var(--color-shadow);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+@media (max-width: 968px) {
+  .quienes-somos-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .quienes-somos-stats {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .stat-item {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .quienes-somos {
+    padding: 3rem 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .quienes-somos-stats {
+    flex-direction: column;
+  }
+}
+

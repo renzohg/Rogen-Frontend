@@ -1,0 +1,135 @@
+.autos-destacados {
+  padding: 5rem 0;
+  background: var(--color-secondary);
+}
+
+.section-subtitle {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.carousel-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--color-white);
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.carousel-button:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: scale(1.1);
+}
+
+.carousel-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.carousel-wrapper {
+  flex: 1;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 3rem;
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-primary);
+  opacity: 0.3;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.dot.active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.dot:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 1200px) {
+  .carousel-track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .autos-destacados {
+    padding: 3rem 0;
+  }
+
+  .carousel-container {
+    flex-direction: column;
+  }
+
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .carousel-button.prev {
+    left: 10px;
+  }
+
+  .carousel-button.next {
+    right: 10px;
+  }
+
+  .carousel-track {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-slide {
+    padding: 0 3rem;
+  }
+}
+
