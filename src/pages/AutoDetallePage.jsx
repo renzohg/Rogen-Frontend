@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getAutoById } from '../services/api';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { CarIcon, MessageIcon } from '../components/Icons';
+import { CarIcon, MessageIcon, ChevronDownIcon, ChevronUpIcon } from '../components/Icons';
 import './AutoDetallePage.css';
 
 function AutoDetallePage() {
@@ -13,6 +13,7 @@ function AutoDetallePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showAdvancedFeatures, setShowAdvancedFeatures] = useState(false);
 
   useEffect(() => {
     // Scroll to top cuando se carga la página
@@ -101,6 +102,17 @@ function AutoDetallePage() {
       setCurrentImageIndex((prev) => (prev - 1 + imagenes.length) % imagenes.length);
     }
   };
+
+  const hasAdvancedFeatures = auto && (
+    auto.puertas || auto.motor || auto.tipoCarroceria ||
+    auto.llantasAleacion || auto.tapizadoCuero ||
+    auto.computadoraAbordo || auto.portaVasos ||
+    auto.direccion || auto.alarma ||
+    auto.potencia || auto.capacidadPersonas || auto.capacidadTanque ||
+    auto.distanciaEjes || auto.valvulasPorCilindro || auto.controlTraccion ||
+    auto.frenosABS || auto.airbagConductorPasajero ||
+    auto.largo || auto.altura || auto.ancho
+  );
 
   return (
     <div className="auto-detalle-page">
@@ -221,6 +233,105 @@ function AutoDetallePage() {
               <div className="description-section">
                 <h2>Descripción</h2>
                 <p>{auto.descripcion}</p>
+              </div>
+            )}
+
+            {hasAdvancedFeatures && (
+              <div className="advanced-features-section">
+                <button
+                  className="accordion-toggle-detail"
+                  onClick={() => setShowAdvancedFeatures(!showAdvancedFeatures)}
+                >
+                  <span>Características Generales</span>
+                  {showAdvancedFeatures ? <ChevronUpIcon size={20} /> : <ChevronDownIcon size={20} />}
+                </button>
+
+                {showAdvancedFeatures && (
+                  <div className="accordion-content-detail">
+                    {/* Características principales */}
+                    {(auto.puertas || auto.motor || auto.tipoCarroceria) && (
+                      <div className="feature-group">
+                        <h4>Principales</h4>
+                        <ul>
+                          {auto.puertas && <li><strong>Puertas:</strong> {auto.puertas}</li>}
+                          {auto.motor && <li><strong>Motor:</strong> {auto.motor}</li>}
+                          {auto.tipoCarroceria && <li><strong>Carrocería:</strong> {auto.tipoCarroceria}</li>}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Exterior e Interior */}
+                    {(auto.llantasAleacion || auto.tapizadoCuero) && (
+                      <div className="feature-group">
+                        <h4>Exterior e Interior</h4>
+                        <ul>
+                          {auto.llantasAleacion && <li>Llantas de aleación</li>}
+                          {auto.tapizadoCuero && <li>Tapizado de cuero</li>}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Confort */}
+                    {(auto.computadoraAbordo || auto.portaVasos) && (
+                      <div className="feature-group">
+                        <h4>Confort</h4>
+                        <ul>
+                          {auto.computadoraAbordo && <li>Computadora de abordo</li>}
+                          {auto.portaVasos && <li>Porta vasos</li>}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Información General */}
+                    {(auto.direccion || auto.alarma) && (
+                      <div className="feature-group">
+                        <h4>Información General</h4>
+                        <ul>
+                          {auto.direccion && <li><strong>Dirección:</strong> {auto.direccion}</li>}
+                          {auto.alarma && <li>Alarma</li>}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Rendimiento */}
+                    {(auto.potencia || auto.capacidadPersonas || auto.capacidadTanque || auto.distanciaEjes || auto.valvulasPorCilindro || auto.controlTraccion) && (
+                      <div className="feature-group">
+                        <h4>Rendimiento</h4>
+                        <ul>
+                          {auto.potencia && <li><strong>Potencia:</strong> {auto.potencia}</li>}
+                          {auto.capacidadPersonas && <li><strong>Capacidad:</strong> {auto.capacidadPersonas} personas</li>}
+                          {auto.capacidadTanque && <li><strong>Tanque:</strong> {auto.capacidadTanque}</li>}
+                          {auto.distanciaEjes && <li><strong>Distancia ejes:</strong> {auto.distanciaEjes}</li>}
+                          {auto.valvulasPorCilindro && <li><strong>Válvulas:</strong> {auto.valvulasPorCilindro}</li>}
+                          {auto.controlTraccion && <li>Control de tracción</li>}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Seguridad */}
+                    {(auto.frenosABS || auto.airbagConductorPasajero) && (
+                      <div className="feature-group">
+                        <h4>Seguridad</h4>
+                        <ul>
+                          {auto.frenosABS && <li>Frenos ABS</li>}
+                          {auto.airbagConductorPasajero && <li>Airbag conductor y pasajero</li>}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Dimensiones */}
+                    {(auto.largo || auto.altura || auto.ancho) && (
+                      <div className="feature-group">
+                        <h4>Dimensiones</h4>
+                        <ul>
+                          {auto.largo && <li><strong>Largo:</strong> {auto.largo}</li>}
+                          {auto.altura && <li><strong>Altura:</strong> {auto.altura}</li>}
+                          {auto.ancho && <li><strong>Ancho:</strong> {auto.ancho}</li>}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             )}
 

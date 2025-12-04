@@ -7,7 +7,7 @@ import {
   deleteAuto
 } from '../services/api';
 import Modal from '../components/Modal';
-import { LockIcon, RefreshIcon, EditIcon, TrashIcon, StarFillIcon, SearchIcon, ExternalLinkIcon } from '../components/Icons';
+import { LockIcon, RefreshIcon, EditIcon, TrashIcon, StarFillIcon, SearchIcon, ExternalLinkIcon, ChevronDownIcon, ChevronUpIcon } from '../components/Icons';
 import './AdminPanel.css';
 
 function AdminPanel() {
@@ -39,11 +39,33 @@ function AdminPanel() {
     destacado: false,
     nuevoIngreso: false,
     version: '',
-    moneda: 'ARS'
+    moneda: 'ARS',
+    // Nuevos campos opcionales
+    puertas: '',
+    motor: '',
+    tipoCarroceria: '',
+    llantasAleacion: false,
+    tapizadoCuero: false,
+    computadoraAbordo: false,
+    portaVasos: false,
+    direccion: '',
+    alarma: false,
+    controlTraccion: false,
+    capacidadPersonas: '',
+    potencia: '',
+    distanciaEjes: '',
+    capacidadTanque: '',
+    valvulasPorCilindro: '',
+    frenosABS: false,
+    airbagConductorPasajero: false,
+    largo: '',
+    altura: '',
+    ancho: ''
   });
 
   const [imageFiles, setImageFiles] = useState([]);
   const [uploadingImages, setUploadingImages] = useState(false);
+  const [showAdvancedFeatures, setShowAdvancedFeatures] = useState(false);
 
   const [loginData, setLoginData] = useState({
     username: '',
@@ -212,7 +234,27 @@ function AdminPanel() {
       destacado: auto.destacado || false,
       nuevoIngreso: auto.nuevoIngreso || false,
       version: auto.version || '',
-      moneda: auto.moneda || 'ARS'
+      moneda: auto.moneda || 'ARS',
+      puertas: auto.puertas || '',
+      motor: auto.motor || '',
+      tipoCarroceria: auto.tipoCarroceria || '',
+      llantasAleacion: auto.llantasAleacion || false,
+      tapizadoCuero: auto.tapizadoCuero || false,
+      computadoraAbordo: auto.computadoraAbordo || false,
+      portaVasos: auto.portaVasos || false,
+      direccion: auto.direccion || '',
+      alarma: auto.alarma || false,
+      controlTraccion: auto.controlTraccion || false,
+      capacidadPersonas: auto.capacidadPersonas || '',
+      potencia: auto.potencia || '',
+      distanciaEjes: auto.distanciaEjes || '',
+      capacidadTanque: auto.capacidadTanque || '',
+      valvulasPorCilindro: auto.valvulasPorCilindro || '',
+      frenosABS: auto.frenosABS || false,
+      airbagConductorPasajero: auto.airbagConductorPasajero || false,
+      largo: auto.largo || '',
+      altura: auto.altura || '',
+      ancho: auto.ancho || ''
     });
     setShowForm(true);
   };
@@ -327,11 +369,32 @@ function AdminPanel() {
       destacado: false,
       nuevoIngreso: false,
       version: '',
-      moneda: 'ARS'
+      moneda: 'ARS',
+      puertas: '',
+      motor: '',
+      tipoCarroceria: '',
+      llantasAleacion: false,
+      tapizadoCuero: false,
+      computadoraAbordo: false,
+      portaVasos: false,
+      direccion: '',
+      alarma: false,
+      controlTraccion: false,
+      capacidadPersonas: '',
+      potencia: '',
+      distanciaEjes: '',
+      capacidadTanque: '',
+      valvulasPorCilindro: '',
+      frenosABS: false,
+      airbagConductorPasajero: false,
+      largo: '',
+      altura: '',
+      ancho: ''
     });
     setImageFiles([]);
     setEditingAuto(null);
     setShowForm(false);
+    setShowAdvancedFeatures(false);
   };
 
   if (!isAuthenticated) {
@@ -634,6 +697,143 @@ function AdminPanel() {
                     />
                     Nuevo ingreso
                   </label>
+                </div>
+
+                {/* Sección de Características Avanzadas */}
+                <div className="advanced-features-accordion">
+                  <button
+                    type="button"
+                    className="accordion-toggle"
+                    onClick={() => setShowAdvancedFeatures(!showAdvancedFeatures)}
+                  >
+                    <span>Todas las características (opcional)</span>
+                    {showAdvancedFeatures ? <ChevronUpIcon size={20} /> : <ChevronDownIcon size={20} />}
+                  </button>
+
+                  {showAdvancedFeatures && (
+                    <div className="accordion-content">
+                      {/* Características principales */}
+                      <h4 className="accordion-subtitle">Características principales</h4>
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label>Puertas</label>
+                          <input type="number" value={formData.puertas} onChange={(e) => setFormData({ ...formData, puertas: e.target.value })} placeholder="Ej: 4" />
+                        </div>
+                        <div className="form-group">
+                          <label>Motor</label>
+                          <input type="text" value={formData.motor} onChange={(e) => setFormData({ ...formData, motor: e.target.value })} placeholder="Ej: 1.6L" />
+                        </div>
+                        <div className="form-group">
+                          <label>Tipo de Carrocería</label>
+                          <input type="text" value={formData.tipoCarroceria} onChange={(e) => setFormData({ ...formData, tipoCarroceria: e.target.value })} placeholder="Ej: Sedán" />
+                        </div>
+                      </div>
+
+                      {/* Exterior e Interior */}
+                      <h4 className="accordion-subtitle">Exterior e Interior</h4>
+                      <div className="form-group checkbox-group">
+                        <label>
+                          <input type="checkbox" checked={formData.llantasAleacion} onChange={(e) => setFormData({ ...formData, llantasAleacion: e.target.checked })} />
+                          Llantas de aleación
+                        </label>
+                        <label>
+                          <input type="checkbox" checked={formData.tapizadoCuero} onChange={(e) => setFormData({ ...formData, tapizadoCuero: e.target.checked })} />
+                          Tapizado de cuero
+                        </label>
+                      </div>
+
+                      {/* Confort y Conveniencia */}
+                      <h4 className="accordion-subtitle">Confort y Conveniencia</h4>
+                      <div className="form-group checkbox-group">
+                        <label>
+                          <input type="checkbox" checked={formData.computadoraAbordo} onChange={(e) => setFormData({ ...formData, computadoraAbordo: e.target.checked })} />
+                          Computadora de abordo
+                        </label>
+                        <label>
+                          <input type="checkbox" checked={formData.portaVasos} onChange={(e) => setFormData({ ...formData, portaVasos: e.target.checked })} />
+                          Porta vasos
+                        </label>
+                      </div>
+
+                      {/* Información General */}
+                      <h4 className="accordion-subtitle">Información General</h4>
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label>Dirección</label>
+                          <input type="text" value={formData.direccion} onChange={(e) => setFormData({ ...formData, direccion: e.target.value })} placeholder="Ej: Asistida" />
+                        </div>
+                        <div className="form-group checkbox-group" style={{ marginTop: '30px' }}>
+                          <label>
+                            <input type="checkbox" checked={formData.alarma} onChange={(e) => setFormData({ ...formData, alarma: e.target.checked })} />
+                            Alarma
+                          </label>
+                        </div>
+                      </div>
+
+                      {/* Rendimiento y Dimensiones */}
+                      <h4 className="accordion-subtitle">Rendimiento</h4>
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label>Potencia</label>
+                          <input type="text" value={formData.potencia} onChange={(e) => setFormData({ ...formData, potencia: e.target.value })} placeholder="Ej: 110 hp" />
+                        </div>
+                        <div className="form-group">
+                          <label>Capacidad Personas</label>
+                          <input type="number" value={formData.capacidadPersonas} onChange={(e) => setFormData({ ...formData, capacidadPersonas: e.target.value })} placeholder="Ej: 5" />
+                        </div>
+                        <div className="form-group">
+                          <label>Capacidad Tanque</label>
+                          <input type="text" value={formData.capacidadTanque} onChange={(e) => setFormData({ ...formData, capacidadTanque: e.target.value })} placeholder="Ej: 50L" />
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label>Distancia entre ejes</label>
+                          <input type="text" value={formData.distanciaEjes} onChange={(e) => setFormData({ ...formData, distanciaEjes: e.target.value })} placeholder="Ej: 2600 mm" />
+                        </div>
+                        <div className="form-group">
+                          <label>Válvulas por cilindro</label>
+                          <input type="number" value={formData.valvulasPorCilindro} onChange={(e) => setFormData({ ...formData, valvulasPorCilindro: e.target.value })} placeholder="Ej: 4" />
+                        </div>
+                        <div className="form-group checkbox-group" style={{ marginTop: '30px' }}>
+                          <label>
+                            <input type="checkbox" checked={formData.controlTraccion} onChange={(e) => setFormData({ ...formData, controlTraccion: e.target.checked })} />
+                            Control de tracción
+                          </label>
+                        </div>
+                      </div>
+
+                      {/* Seguridad */}
+                      <h4 className="accordion-subtitle">Seguridad</h4>
+                      <div className="form-group checkbox-group">
+                        <label>
+                          <input type="checkbox" checked={formData.frenosABS} onChange={(e) => setFormData({ ...formData, frenosABS: e.target.checked })} />
+                          Frenos ABS
+                        </label>
+                        <label>
+                          <input type="checkbox" checked={formData.airbagConductorPasajero} onChange={(e) => setFormData({ ...formData, airbagConductorPasajero: e.target.checked })} />
+                          Airbag conductor y pasajero
+                        </label>
+                      </div>
+
+                      {/* Dimensiones */}
+                      <h4 className="accordion-subtitle">Dimensiones</h4>
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label>Largo</label>
+                          <input type="text" value={formData.largo} onChange={(e) => setFormData({ ...formData, largo: e.target.value })} placeholder="Ej: 4500 mm" />
+                        </div>
+                        <div className="form-group">
+                          <label>Altura</label>
+                          <input type="text" value={formData.altura} onChange={(e) => setFormData({ ...formData, altura: e.target.value })} placeholder="Ej: 1500 mm" />
+                        </div>
+                        <div className="form-group">
+                          <label>Ancho</label>
+                          <input type="text" value={formData.ancho} onChange={(e) => setFormData({ ...formData, ancho: e.target.value })} placeholder="Ej: 1800 mm" />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="form-actions">
