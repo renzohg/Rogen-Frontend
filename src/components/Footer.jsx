@@ -19,7 +19,7 @@ function Footer() {
               <span className="logo-text">Rogen Autos</span>
             </div>
             <p className="footer-description">
-              Tu confianza es nuestro motor. Encuentra el auto perfecto 
+              Tu confianza es nuestro motor. Encuentra el auto perfecto
               para ti con la mejor calidad y servicio.
             </p>
           </div>
@@ -28,17 +28,8 @@ function Footer() {
             <h3 className="footer-title">Enlaces Rápidos</h3>
             <ul className="footer-links">
               <li><a href="#inicio" onClick={(e) => { e.preventDefault(); scrollToSection('inicio'); }}>Inicio</a></li>
-              <li><a href="#quienes-somos" onClick={(e) => { e.preventDefault(); scrollToSection('quienes-somos'); }}>Quiénes Somos</a></li>
-              <li><a href="#autos-destacados" onClick={(e) => { e.preventDefault(); scrollToSection('autos-destacados'); }}>Autos Destacados</a></li>
-              <li><a href="#catalogo" onClick={(e) => { e.preventDefault(); scrollToSection('catalogo'); }}>Catálogo</a></li>
-            </ul>
-          </div>
-
-          <div className="footer-section">
-            <h3 className="footer-title">Información</h3>
-            <ul className="footer-links">
-              <li><a href="#porque-elegirnos" onClick={(e) => { e.preventDefault(); scrollToSection('porque-elegirnos'); }}>Por qué Elegirnos</a></li>
-              <li><a href="#contacto" onClick={(e) => { e.preventDefault(); scrollToSection('contacto'); }}>Contacto</a></li>
+              <li><a href="#quienes-somos" onClick={(e) => { e.preventDefault(); scrollToSection('quienes-somos'); }}>Nosotros</a></li>
+              <li><a href="#catalogo" onClick={(e) => { e.preventDefault(); scrollToSection('catalogo'); }}>Autos</a></li>
             </ul>
           </div>
 

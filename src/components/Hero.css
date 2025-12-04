@@ -5,10 +5,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  background: #0C2740;
   color: var(--color-white);
   text-align: center;
   overflow: hidden;
+  padding-top: 80px;
+  /* Altura aproximada del navbar */
 }
 
 .hero::before {
@@ -34,8 +36,9 @@
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 800px;
-  padding: 2rem;
+  max-width: 95%;
+  width: 100%;
+  padding: 1rem 1.5rem;
   animation: fadeInUp 1s ease-out;
 }
 
@@ -44,6 +47,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -58,49 +62,108 @@
 }
 
 .hero-slogan {
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 5vw, 3rem);
   font-weight: 800;
-  margin-bottom: 1.5rem;
+  margin-bottom: clamp(1rem, 2vh, 1.5rem);
   opacity: 0.95;
+  line-height: 1.2;
 }
 
 .hero-description {
-  font-size: 1.2rem;
-  margin-bottom: 2.5rem;
-  line-height: 1.8;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+  line-height: 1.6;
   opacity: 0.9;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-button {
   display: inline-block;
-  padding: 1rem 2.5rem;
-  background: var(--color-white);
-  color: var(--color-primary);
+  padding: clamp(0.8rem, 2vh, 1rem) clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--color-accent);
+  color: var(--color-white);
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
   font-weight: 600;
   border-radius: 50px;
-  transition: var(--transition);
+  transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Hover mejorado */
 .hero-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  background: var(--color-secondary);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  background: var(--color-accent);
+  transform: scale(1.05);
+  /* ligero zoom */
 }
 
+/* Efecto de brillo animado */
+.hero-button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: rotate(45deg) translateX(-100%);
+  transition: transform 0.5s ease;
+  pointer-events: none;
+}
+
+.hero-button:hover::after {
+  transform: rotate(45deg) translateX(100%);
+}
+
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+  .hero-content {
+    max-width: 90%;
+    padding: 1rem;
+  }
+}
+
+/* Tablets pequeñas */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 3rem;
+  .hero {
+    padding-top: 70px;
   }
 
-  .hero-slogan {
-    font-size: 1.5rem;
+  .hero-content {
+    max-width: 92%;
+    padding: 0.8rem 1rem;
   }
 
   .hero-description {
-    font-size: 1rem;
+    max-width: 95%;
   }
 }
 
+/* Móviles */
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 60px;
+    min-height: 500px;
+  }
+
+  .hero-content {
+    max-width: 95%;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .hero-slogan {
+    margin-bottom: 0.8rem;
+  }
+
+  .hero-description {
+    max-width: 100%;
+    margin-bottom: 1.2rem;
+  }
+}

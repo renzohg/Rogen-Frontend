@@ -18,7 +18,7 @@ function Navbar() {
 
   const handleNavigation = (sectionId) => {
     setMenuOpen(false);
-    
+
     // Si estamos en otra ruta (no en la página principal), navegar primero a la principal
     if (location.pathname !== '/') {
       navigate('/');
@@ -45,19 +45,17 @@ function Navbar() {
           <span className="logo-icon">
             <img src="/logo-azul-transp.png" alt="Rogen Autos" className="logo-img" />
           </span>
-          <span className="logo-text">Rogen Autos</span>
         </div>
-        
+
         <div className={`navbar-menu ${menuOpen ? 'active' : ''}`}>
           <a href="#inicio" onClick={(e) => { e.preventDefault(); handleNavigation('inicio'); }}>Inicio</a>
-          <a href="#quienes-somos" onClick={(e) => { e.preventDefault(); handleNavigation('quienes-somos'); }}>Quiénes Somos</a>
-          <a href="#autos-destacados" onClick={(e) => { e.preventDefault(); handleNavigation('autos-destacados'); }}>Autos Destacados</a>
-          <a href="#porque-elegirnos" onClick={(e) => { e.preventDefault(); handleNavigation('porque-elegirnos'); }}>Por qué Elegirnos</a>
-          <a href="#catalogo" onClick={(e) => { e.preventDefault(); handleNavigation('catalogo'); }}>Catálogo</a>
+          <a href="#quienes-somos" onClick={(e) => { e.preventDefault(); handleNavigation('quienes-somos'); }}>Nosotros</a>
+          <a href="#porque-elegirnos" onClick={(e) => { e.preventDefault(); handleNavigation('porque-elegirnos'); }}>Beneficios</a>
+          <a href="#catalogo" onClick={(e) => { e.preventDefault(); handleNavigation('catalogo'); }}>Autos</a>
           <a href="#contacto" onClick={(e) => { e.preventDefault(); handleNavigation('contacto'); }}>Contacto</a>
         </div>
 
-        <button 
+        <button
           className={`navbar-toggle ${menuOpen ? 'active' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"

@@ -89,7 +89,7 @@ function AutoDetallePage() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${mensajeWhatsApp}`;
 
   const imagenes = auto.imagenes && auto.imagenes.length > 0 ? auto.imagenes : [];
-  
+
   const nextImage = () => {
     if (imagenes.length > 0) {
       setCurrentImageIndex((prev) => (prev + 1) % imagenes.length);
@@ -121,10 +121,11 @@ function AutoDetallePage() {
                       ‹
                     </button>
                   )}
-                  <img 
-                    src={imagenes[currentImageIndex]} 
+                  <img
+                    src={imagenes[currentImageIndex]}
                     alt={`${auto.marca} ${auto.modelo} - Imagen ${currentImageIndex + 1}`}
                     className="carousel-main-image"
+                    loading="lazy"
                   />
                   {imagenes.length > 1 && (
                     <button className="carousel-btn next" onClick={nextImage} aria-label="Siguiente imagen">
@@ -141,7 +142,7 @@ function AutoDetallePage() {
                         onClick={() => setCurrentImageIndex(index)}
                         aria-label={`Ver imagen ${index + 1}`}
                       >
-                        <img src={img} alt={`Miniatura ${index + 1}`} />
+                        <img src={img} alt={`${auto.marca} ${auto.modelo} - Miniatura ${index + 1}`} loading="lazy" />
                       </button>
                     ))}
                   </div>
@@ -201,17 +202,17 @@ function AutoDetallePage() {
             {/* Resto de datos */}
             <div className="details-list">
               <div className="detail-item">
-                  <span className="detail-label">Combustible</span>
-                  <span className="detail-value">{auto.combustible}</span>
-                </div>
-              
+                <span className="detail-label">Combustible</span>
+                <span className="detail-value">{auto.combustible}</span>
+              </div>
+
               <div className="detail-item">
-                  <span className="detail-label">Color</span>
-                  <span className="detail-value">{auto.color}</span>
-                </div>
-              
+                <span className="detail-label">Color</span>
+                <span className="detail-value">{auto.color}</span>
+              </div>
+
               <div className="detail-item">
-                  <span className="detail-label">Estado</span>
+                <span className="detail-label">Estado</span>
                 <span className="detail-value">{auto.estado}</span>
               </div>
             </div>
@@ -223,9 +224,9 @@ function AutoDetallePage() {
               </div>
             )}
 
-            <a 
-              href={whatsappUrl} 
-              target="_blank" 
+            <a
+              href={whatsappUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="whatsapp-button-large"
             >

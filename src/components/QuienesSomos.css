@@ -31,77 +31,133 @@
 
 .quienes-somos-content {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
 }
 
 .quienes-somos-text {
   font-size: 1.1rem;
-  line-height: 1.8;
   color: var(--color-text-light);
-}
-
-.quienes-somos-text p {
-  margin-bottom: 1.5rem;
-}
-
-.quienes-somos-text strong {
-  color: var(--color-primary);
-  font-weight: 600;
-}
-
-.intro-text {
-  font-size: 1.2rem;
-  color: var(--color-text);
-  font-weight: 500;
-}
-
-.quienes-somos-stats {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.stat-item {
-  text-align: center;
-  padding: 2rem;
-  background: var(--color-secondary);
-  border-radius: 10px;
-  transition: var(--transition);
+.quienes-somos-text p {
+  margin: 0;
 }
 
-.stat-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px var(--color-shadow);
-}
-
-.stat-number {
-  font-size: 3rem;
+.quienes-somos-text strong {
+  color: var(--color-primary);
   font-weight: 700;
-  color: var(--color-accent);
-  margin-bottom: 0.5rem;
 }
 
-.stat-label {
+.intro-text {
+  font-size: 1.35rem;
+  color: var(--color-text);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.additional-text {
+  font-size: 1.15rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+/* Lista de características */
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   font-size: 1rem;
   color: var(--color-text);
   font-weight: 500;
 }
 
+.feature-item svg {
+  flex-shrink: 0;
+}
+
+/* Estilos del Carrusel */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-images {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.carousel-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.carousel-image.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Indicadores del carrusel */
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.indicator.active {
+  background: rgba(255, 255, 255, 0.95);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Responsive Design */
 @media (max-width: 968px) {
   .quienes-somos-content {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
 
-  .quienes-somos-stats {
-    flex-direction: row;
-    justify-content: space-around;
+  .carousel-container {
+    order: 2;
   }
 
-  .stat-item {
-    flex: 1;
+  .quienes-somos-text {
+    order: 1;
   }
 }
 
@@ -114,8 +170,62 @@
     font-size: 2rem;
   }
 
-  .quienes-somos-stats {
-    flex-direction: column;
+  .quienes-somos-content {
+    gap: 2rem;
+  }
+
+  .carousel-images {
+    aspect-ratio: 16 / 10;
+  }
+
+  .intro-text {
+    font-size: 1.2rem;
+  }
+
+  .additional-text {
+    font-size: 1.05rem;
+  }
+
+  .feature-item {
+    font-size: 1rem;
   }
 }
 
+@media (max-width: 480px) {
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .intro-text {
+    font-size: 1.1rem;
+  }
+
+  .additional-text {
+    font-size: 1rem;
+  }
+
+  .feature-item {
+    font-size: 0.95rem;
+  }
+
+  .carousel-indicators {
+    bottom: 12px;
+  }
+
+  .indicator {
+    width: 6px;
+    height: 6px;
+  }
+
+  .indicator.active {
+    width: 18px;
+  }
+
+  .quienes-somos-text {
+    gap: 1.5rem;
+  }
+}

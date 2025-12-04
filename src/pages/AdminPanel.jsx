@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { 
-  loginAdmin, 
-  getAutosAdmin, 
-  createAuto, 
-  updateAuto, 
-  deleteAuto 
+import {
+  loginAdmin,
+  getAutosAdmin,
+  createAuto,
+  updateAuto,
+  deleteAuto
 } from '../services/api';
 import Modal from '../components/Modal';
 import { LockIcon, RefreshIcon, EditIcon, TrashIcon, StarFillIcon, SearchIcon } from '../components/Icons';
@@ -21,7 +21,7 @@ function AdminPanel() {
   const [deleteConfirm, setDeleteConfirm] = useState({ isOpen: false, id: null });
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-  
+
   const [formData, setFormData] = useState({
     marca: '',
     modelo: '',
@@ -99,12 +99,12 @@ function AdminPanel() {
       const response = await getAutosAdmin();
       const autosData = response.data;
       setAutos(autosData);
-      
+
       // Calcular estadísticas
       const total = autosData.length;
       const disponibles = autosData.filter(auto => auto.estado === 'Disponible').length;
       const destacados = autosData.filter(auto => auto.destacado).length;
-      
+
       setStats({ total, disponibles, destacados });
     } catch (error) {
       console.error('Error al cargar autos:', error);
@@ -119,7 +119,7 @@ function AdminPanel() {
   const uploadImageToImgBB = async (file) => {
     const formData = new FormData();
     formData.append('image', file);
-    
+
     // NOTA: Necesitas obtener tu propia clave API gratuita en https://api.imgbb.com/
     // Reemplaza la clave de ejemplo con tu clave real
     const apiKey = '6673449535d4618aa72a22cf638256dc'; // Clave de ejemplo - reemplazar con tu clave
@@ -127,7 +127,7 @@ function AdminPanel() {
       method: 'POST',
       body: formData
     });
-    
+
     const data = await response.json();
     if (data.success) {
       return data.data.url;
@@ -145,7 +145,7 @@ function AdminPanel() {
       const uploadedUrls = await Promise.all(
         files.map(file => uploadImageToImgBB(file))
       );
-      
+
       // Combinar URLs existentes con las nuevas
       const existingUrls = formData.imagenes ? formData.imagenes.split(',').map(url => url.trim()).filter(url => url) : [];
       const allUrls = [...existingUrls, ...uploadedUrls].join(', ');
@@ -658,68 +658,69 @@ function AdminPanel() {
                     </thead>
                     <tbody>
                       {currentItems.map(auto => (
-                      <tr key={auto._id}>
-                        <td>
-                          {auto.imagenes && auto.imagenes.length > 0 ? (
-                            <img 
-                              src={auto.imagenes[0]} 
-                              alt={`${auto.marca} ${auto.modelo}`}
-                              className="auto-thumbnail"
-                              onError={(e) => { e.target.style.display = 'none'; }}
-                            />
-                          ) : (
-                            <div className="no-image-placeholder">Sin imagen</div>
-                          )}
-                        </td>
-                        <td>{auto.marca}</td>
-                        <td>{auto.modelo}</td>
-                        <td>{auto.año}</td>
-                        <td>{auto.moneda || 'ARS'} ${new Intl.NumberFormat('es-AR').format(auto.precio)}</td>
-                        <td>
-                          <select
-                            value={auto.estado}
-                            onChange={(e) => handleStatusChange(auto, e.target.value)}
-                            className={`status-select status-${auto.estado.toLowerCase()}`}
-                            disabled={loading}
-                            title="Seleccionar estado"
-                          >
-                            <option value="Disponible">Disponible</option>
-                            <option value="Reservado">Reservado</option>
-                            <option value="Vendido">Vendido</option>
-                          </select>
-                        </td>
-                        <td>{auto.publicado ? '✓' : '✗'}</td>
-                        <td>
-                          <button 
-                            onClick={() => toggleFeatured(auto)}
-                            className={`featured-btn ${auto.destacado ? 'featured' : ''}`}
-                            title={auto.destacado ? 'Quitar de destacados' : 'Marcar como destacado'}
-                            disabled={loading}
-                          >
-                            {auto.destacado ? (
-                              <StarFillIcon size={20} color="var(--color-accent)" />
+                        <tr key={auto._id}>
+                          <td>
+                            {auto.imagenes && auto.imagenes.length > 0 ? (
+                              <img
+                                src={auto.imagenes[0]}
+                                alt={`${auto.marca} ${auto.modelo} - Miniatura`}
+                                className="auto-thumbnail"
+                                loading="lazy"
+                                onError={(e) => { e.target.style.display = 'none'; }}
+                              />
                             ) : (
-                              <StarFillIcon size={20} color="var(--color-text-light)" />
+                              <div className="no-image-placeholder">Sin imagen</div>
                             )}
-                          </button>
-                        </td>
-                        <td className="actions-cell">
-                          <div className="action-buttons">
-                            <button onClick={() => handleEdit(auto)} className="btn-edit" title="Editar">
-                              <EditIcon size={16} />
+                          </td>
+                          <td>{auto.marca}</td>
+                          <td>{auto.modelo}</td>
+                          <td>{auto.año}</td>
+                          <td>{auto.moneda || 'ARS'} ${new Intl.NumberFormat('es-AR').format(auto.precio)}</td>
+                          <td>
+                            <select
+                              value={auto.estado}
+                              onChange={(e) => handleStatusChange(auto, e.target.value)}
+                              className={`status-select status-${auto.estado.toLowerCase()}`}
+                              disabled={loading}
+                              title="Seleccionar estado"
+                            >
+                              <option value="Disponible">Disponible</option>
+                              <option value="Reservado">Reservado</option>
+                              <option value="Vendido">Vendido</option>
+                            </select>
+                          </td>
+                          <td>{auto.publicado ? '✓' : '✗'}</td>
+                          <td>
+                            <button
+                              onClick={() => toggleFeatured(auto)}
+                              className={`featured-btn ${auto.destacado ? 'featured' : ''}`}
+                              title={auto.destacado ? 'Quitar de destacados' : 'Marcar como destacado'}
+                              disabled={loading}
+                            >
+                              {auto.destacado ? (
+                                <StarFillIcon size={20} color="var(--color-accent)" />
+                              ) : (
+                                <StarFillIcon size={20} color="var(--color-text-light)" />
+                              )}
                             </button>
-                            <button onClick={() => handleDeleteClick(auto._id)} className="btn-delete" title="Eliminar">
-                              <TrashIcon size={16} />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
+                          </td>
+                          <td className="actions-cell">
+                            <div className="action-buttons">
+                              <button onClick={() => handleEdit(auto)} className="btn-edit" title="Editar">
+                                <EditIcon size={16} />
+                              </button>
+                              <button onClick={() => handleDeleteClick(auto._id)} className="btn-delete" title="Eliminar">
+                                <TrashIcon size={16} />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
                       ))}
                     </tbody>
                   </table>
                   {totalPages > 1 && (
                     <div className="pagination">
-                      <button 
+                      <button
                         onClick={() => paginate(currentPage > 1 ? currentPage - 1 : 1)}
                         disabled={currentPage === 1}
                         className="pagination-arrow"
@@ -738,7 +739,7 @@ function AdminPanel() {
                         } else {
                           pageNum = currentPage - 2 + i;
                         }
-                        
+
                         if (pageNum > 0 && pageNum <= totalPages) {
                           return (
                             <button
@@ -752,7 +753,7 @@ function AdminPanel() {
                         }
                         return null;
                       })}
-                      <button 
+                      <button
                         onClick={() => paginate(currentPage < totalPages ? currentPage + 1 : totalPages)}
                         disabled={currentPage === totalPages}
                         className="pagination-arrow"

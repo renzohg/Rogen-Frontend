@@ -1,6 +1,10 @@
+#contacto .section-header {
+  margin-bottom: 0rem;
+}
+
 .contacto {
   padding: 5rem 0;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  background: #1a4d7a;
   color: var(--color-white);
 }
 
@@ -15,7 +19,7 @@
 
 .contacto-content {
   max-width: 800px;
-  margin: 3rem auto 0;
+  margin: 2.4rem auto 0;
   text-align: center;
 }
 
@@ -41,12 +45,6 @@
   font-size: 1rem;
 }
 
-.contacto-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
 .contacto-item svg {
   flex-shrink: 0;
 }
@@ -55,7 +53,7 @@
   display: inline-flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.25rem 3rem;
+  padding: 0.9rem 1.5rem;
   background: #25D366;
   color: var(--color-white);
   text-decoration: none;
@@ -63,19 +61,12 @@
   font-weight: 600;
   border-radius: 50px;
   transition: var(--transition);
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
 }
 
 .whatsapp-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
   background: #20BA5A;
-}
-
-.whatsapp-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
 }
 
 .whatsapp-button svg {
@@ -97,4 +88,3 @@
     font-size: 1rem;
   }
 }
-

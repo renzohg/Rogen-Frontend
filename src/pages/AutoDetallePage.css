@@ -190,16 +190,16 @@
   .details-list {
     gap: 1rem;
   }
-  
+
   .detail-item {
     padding-bottom: 0.75rem;
   }
-  
+
   .detail-label {
     min-width: 80px;
     font-size: 0.9rem;
   }
-  
+
   .detail-value {
     font-size: 0.95rem;
   }
@@ -322,21 +322,19 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 1.5rem 2.5rem;
+  padding: 1.2rem 2rem;
   background: #25D366;
   color: var(--color-white);
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  border-radius: 50px;
+  border-radius: 10px;
   transition: var(--transition);
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
   width: 100%;
 }
 
 .whatsapp-button-large:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
   background: #20BA5A;
 }
 
@@ -421,5 +419,3 @@
     padding: 1.25rem 2rem;
   }
 }
-
-

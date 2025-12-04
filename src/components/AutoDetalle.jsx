@@ -38,7 +38,7 @@ function AutoDetalle({ auto, isOpen, onClose }) {
 
         <div className="auto-detalle-image">
           {auto.imagenes && auto.imagenes.length > 0 ? (
-            <img src={auto.imagenes[0]} alt={`${auto.marca} ${auto.modelo}`} />
+            <img src={auto.imagenes[0]} alt={`${auto.marca} ${auto.modelo} ${auto.año}`} loading="lazy" />
           ) : (
             <div className="no-image">
               <CarIcon size={64} color="var(--color-text-light)" />
@@ -117,9 +117,9 @@ function AutoDetalle({ auto, isOpen, onClose }) {
             </div>
           )}
 
-          <a 
-            href={whatsappUrl} 
-            target="_blank" 
+          <a
+            href={whatsappUrl}
+            target="_blank"
             rel="noopener noreferrer"
             className="whatsapp-button-detalle"
           >

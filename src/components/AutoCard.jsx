@@ -23,7 +23,7 @@ function AutoCard({ auto }) {
           <div className="nuevo-ingreso-badge">Nuevo ingreso</div>
         )}
         {auto.imagenes && auto.imagenes.length > 0 ? (
-          <img src={auto.imagenes[0]} alt={`${auto.marca} ${auto.modelo}`} />
+          <img src={auto.imagenes[0]} alt={`${auto.marca} ${auto.modelo}`} loading="lazy" />
         ) : (
           <div className="no-image">
             <CarIcon size={48} color="var(--color-text-light)" />

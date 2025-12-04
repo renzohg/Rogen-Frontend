@@ -60,7 +60,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #0C2740;
 }
 
 .login-container {
@@ -160,7 +160,7 @@
   align-items: center;
 }
 
-.admin-header h1 { 
+.admin-header h1 {
   color: #333;
   font-size: 1.5rem;
 }
@@ -348,13 +348,13 @@
     gap: 1rem;
     padding: 1rem;
   }
-  
+
   .header-stats {
-   justify-content: center;
+    justify-content: center;
     gap: 0.75rem;
     width: 100%;
   }
-  
+
   .admin-search {
     width: 100%;
   }
@@ -370,7 +370,7 @@
   max-width: 400px;
 }
 
-.admin-search svg{
+.admin-search svg {
   position: absolute;
   left: 1rem;
 }
@@ -435,10 +435,12 @@
 .autos-table tr:hover {
   background: #f8f9fa;
 }
+
 .status-badge {
   display: inline-block;
   padding: 0.35rem 0.85rem;
-  border-radius: 999px; /* estilo píldora */
+  border-radius: 999px;
+  /* estilo píldora */
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.3px;
@@ -451,12 +453,16 @@
 /* Efecto hover general (opcional, si no querés hover sacalo) */
 .status-badge:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
-.status-disponible, .status-vendido, .status-reservado{
+
+.status-disponible,
+.status-vendido,
+.status-reservado {
   padding: 5px;
   border-radius: 5px;
 }
+
 /* Disponible */
 .status-disponible {
   background: #d6f5df;
@@ -543,7 +549,7 @@
   background: #5568d3;
 }
 
-.upload-label input[type="file"]:disabled + .upload-button {
+.upload-label input[type="file"]:disabled+.upload-button {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -640,8 +646,10 @@
 
 /* Botón más pequeño */
 .featured-btn {
-  width: 28px;        /* antes 36px */
-  height: 28px;       /* antes 36px */
+  width: 28px;
+  /* antes 36px */
+  height: 28px;
+  /* antes 36px */
   border-radius: 50%;
   border: none;
   background: #f3f4f6;
@@ -651,15 +659,17 @@
   cursor: pointer;
 
   transition: all 0.20s ease;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
   padding: 0;
 }
 
 /* Icono SVG reducido */
 .featured-btn svg {
-  width: 16px;        /* antes 20px */
+  width: 16px;
+  /* antes 20px */
   height: 16px;
-  fill: #c7c7c7;      /* gris claro cuando está desactivado */
+  fill: #c7c7c7;
+  /* gris claro cuando está desactivado */
   transition: transform 0.2s ease, opacity 0.2s ease, fill 0.2s ease;
 }
 
@@ -667,7 +677,7 @@
 .featured-btn:hover {
   background: #e5e7eb;
   transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
 }
 
 /* Click */
@@ -678,11 +688,12 @@
 /* Estado destacado (activo) */
 .featured-btn.featured {
   background: var(--color-accent, #3b82f6);
-  box-shadow: 0 3px 10px rgba(59,130,246,0.35);
+  box-shadow: 0 3px 10px rgba(59, 130, 246, 0.35);
 }
 
 .featured-btn.featured svg {
-  fill: #fff;        /* estrella blanca cuando está ON */
+  fill: #fff;
+  /* estrella blanca cuando está ON */
   transform: scale(1.05);
 }
 
@@ -717,4 +728,3 @@
   padding: 4px;
   line-height: 1.2;
 }
-
